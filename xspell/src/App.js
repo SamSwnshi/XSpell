@@ -34,7 +34,7 @@ function App() {
     const firstCorrection = correctedWords.find(
       (word, index) => word !== words[index]
     );
-    setSuggestedText(firstCorrection);
+    setSuggestedText(firstCorrection || "");
   }
 
   return (
