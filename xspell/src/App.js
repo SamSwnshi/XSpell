@@ -1,25 +1,20 @@
-import React,{useState} from 'react'
-import './App.css';
+import React, { useState } from "react";
+
+// Define a custom dictionary of words and their corrections
 const customDictionary = {
-
   teh: "the",
-
   wrok: "work",
-
   fot: "for",
-
-  exampl: "example"
-
+  exampl: "example",
 };
 
+const SpellCheckApp = () => {
+  const [inputText, setInputText] = useState("");
+  const [suggestedText, setSuggestedText] = useState("");
 
-function App() {
-  const [inputText,setInputText] = useState("")
-  const [suggestedText,setSuggestedText] = useState("")
-
-  const handleInputChange = (e) =>{
+  const handleInputChange = (e) => {
     const text = e.target.value;
-    setInputText(text)
+    setInputText(text);
 
     // Implement a basic spelling check and correction
     const words = text.split(" ");
@@ -35,26 +30,25 @@ function App() {
       (word, index) => word !== words[index]
     );
     setSuggestedText(firstCorrection || "");
-  }
+  };
 
   return (
-    <div className="App">
+    <div>
       <h1>Spell Check and Auto-Correction</h1>
-      <textarea 
-      value={inputText}
-      rows={5}
-      onChange={handleInputChange}
-      cols={40}
-      placeholder='Enter text...'/>
-
+      <textarea
+        value={inputText}
+        onChange={handleInputChange}
+        placeholder="Enter text..."
+        rows={5}
+        cols={40}
+      />
       {suggestedText && (
         <p>
-          Did you mean: 
-          <strong>{suggestedText}</strong>?
+          Did you mean: <strong>{suggestedText}</strong>?
         </p>
       )}
     </div>
   );
-}
+};
 
-export default App;
+export default SpellCheckApp;
